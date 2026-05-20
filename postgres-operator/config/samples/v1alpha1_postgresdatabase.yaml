@@ -1,0 +1,59 @@
+# Standalone PostgreSQL instance (1 replica)
+apiVersion: databases.example.io/v1alpha1
+kind: PostgresDatabase
+metadata:
+  name: myapp-db
+  namespace: default
+spec:
+  version: "16"
+  replicas: 1
+  database: myapp
+  username: myapp
+  storage:
+    size: 5Gi
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: "1"
+      memory: 512Mi
+---
+# High-availability cluster (1 primary + 2 read replicas)
+apiVersion: databases.example.io/v1alpha1
+kind: PostgresDatabase
+metadata:
+  name: myapp-db-ha
+  namespace: default
+spec:
+  version: "16"
+  replicas: 3
+  database: myapp
+  username: myapp
+  storage:
+    size: 20Gi
+    storageClassName: fast-ssd
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: "2"
+      memory: 2Gi
+---
+# Using a pre-existing password Secret
+apiVersion: databases.example.io/v1alpha1
+kind: PostgresDatabase
+metadata:
+  name: myapp-db-existing-secret
+  namespace: default
+spec:
+  version: "15"
+  replicas: 1
+  database: myapp
+  username: myapp
+  storage:
+    size: 10Gi
+  passwordSecretRef:
+    name: my-pg-secret
+    key: password
