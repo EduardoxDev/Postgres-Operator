@@ -1,6 +1,6 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" width="80" />
-  <h1>postgres-operator</h1>
+  <h1>Postgres Operator</h1>
   <p>Kubernetes Operator em Go para provisionar e gerenciar clusters PostgreSQL.</p>
 
   <a href="https://golang.org"><img src="https://img.shields.io/badge/Go-1.22-00ADD8?style=flat-square&logo=go&logoColor=white" /></a>
